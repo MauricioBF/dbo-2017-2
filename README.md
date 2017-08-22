@@ -2,10 +2,10 @@
 
 Ferramentas necessárias:
 
-- nodejs
-- visual studio code
-- harpjs
-- eslint
+- Node.JS
+- Visual Studio Code
+- Harpjs
+- Eslint
 
 Configuração:
 
