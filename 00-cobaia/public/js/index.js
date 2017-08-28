@@ -1,3 +1,3 @@
-document.write('funciona!');
+console.log('funciona');
 
 
