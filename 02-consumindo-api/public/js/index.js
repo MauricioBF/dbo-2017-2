@@ -1,3 +1,10 @@
+const form = document.querySelector('form');
+
+form.addEventListener('submit', function(e) {
+  busca(form.cep.value);
+  e.preventDefault();
+});
+
 function ajax(url, callback) {
   const xhr = new XMLHttpRequest();
   xhr.open('GET', url, true);
@@ -11,3 +18,11 @@ function busca(cep) { // cep: 96201460
     console.log(JSON.parse(e.target.response));
   });
 }
+
+
+
+
+
+
+
+
