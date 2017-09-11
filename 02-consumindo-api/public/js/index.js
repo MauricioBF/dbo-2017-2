@@ -1,4 +1,6 @@
 const form = document.querySelector('form');
+const divResultado = document.querySelector('div#resultado');
+const scriptTemplate = document.querySelector('#template');
 
 form.addEventListener('submit', function(e) {
   busca(form.cep.value);
@@ -15,11 +17,16 @@ function ajax(url, callback) {
 function busca(cep) { // cep: 96201460
   const url = `http://viacep.com.br/ws/${cep}/json/`;
   ajax(url, function(e) {
-    console.log(JSON.parse(e.target.response));
+    printa(JSON.parse(e.target.response));
   });
 }
 
-
+function printa(json) {
+  const template = scriptTemplate.innerText;
+  const handlebars = Handlebars.compile(template);
+  const html = handlebars(json);
+  divResultado.innerHTML = html;
+}
 
 
 
