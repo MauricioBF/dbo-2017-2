@@ -4,26 +4,27 @@ quadrado.style.left = '0px';
 quadrado.style.top = '0px';
 
 document.addEventListener('keydown', onkeydown);
+document.addEventListener('keypress', onkeypress);
 document.addEventListener('keyup', onkeyup);
 
-const teclas = [];
+const teclas = {};
 
 function loop() {
     console.log('loop ...');
-    pre.textContent = teclas;
-    if (teclas.indexOf('d') >= 0) {
+    pre.textContent = JSON.stringify(teclas);
+    if (teclas['d']) {
         quadrado.style.left =
             (parseInt(quadrado.style.left) + 1) + 'px';
     }
-    if (teclas.indexOf('a') >= 0) {
+    if (teclas['a']) {
         quadrado.style.left =
             (parseInt(quadrado.style.left) - 1) + 'px';
     }
-    if (teclas.indexOf('s') >= 0) {
+    if (teclas['s']) {
         quadrado.style.top =
             (parseInt(quadrado.style.top) + 1) + 'px';
     }
-    if (teclas.indexOf('w') >= 0) {
+    if (teclas['w']) {
         quadrado.style.top =
             (parseInt(quadrado.style.top) - 1) + 'px';
     }
@@ -31,12 +32,15 @@ function loop() {
 }
 
 function onkeydown(e) {
-    if (teclas.indexOf(e.key) >= 0) return;
-    teclas.push(e.key);    
+    teclas[e.key] = true;    
+}
+
+function onkeypress(e) {
+    teclas[e.key] = true;    
 }
 
 function onkeyup(e) {
-    teclas.splice(e.key, 1);
+    teclas[e.key] = false;
 }
 
 loop();
