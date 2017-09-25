@@ -4,7 +4,7 @@ quadrado.style.left = '0px';
 quadrado.style.top = '0px';
 
 document.addEventListener('keydown', onkeydown);
-document.addEventListener('keypress', onkeypress);
+// document.addEventListener('keypress', onkeypress);
 document.addEventListener('keyup', onkeyup);
 
 const teclas = {};
@@ -32,11 +32,11 @@ function loop() {
 }
 
 function onkeydown(e) {
-    teclas[e.key] = true;    
+    teclas[e.key] = true;
 }
 
 function onkeypress(e) {
-    teclas[e.key] = true;    
+    teclas[e.key] = true;
 }
 
 function onkeyup(e) {
@@ -44,7 +44,3 @@ function onkeyup(e) {
 }
 
 loop();
-
-
-
-
