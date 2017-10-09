@@ -32,11 +32,34 @@ db.ref('/avisos').on('child_added', function(aviso) {
 });
 
 linkLogout.addEventListener('click', function() {
-    firebase.auth().signOut();
+    firebase.auth().signOut().then(function() {
+        usuario = null;
+        divLogado.style.display = 'none';
+        divNaoLogado.style.display = 'block';
+        avatar.src = '';
+        nome.textContent = '';
+    });
 });
 
 linkLogin.addEventListener('click', function() {
-    firebase.auth().signInWithRedirect(provider);
+    firebase.auth()
+    .signInWithRedirect(provider).then(function(user) {
+        if (user) {
+            usuario = user;
+            divLogado.style.display = 'block';
+            divNaoLogado.style.display = 'none';
+            avatar.src = user.photoURL;
+            nome.textContent = user.displayName;
+        } else {
+            usuario = null;
+            divLogado.style.display = 'none';
+            divNaoLogado.style.display = 'block';
+            avatar.src = '';
+            nome.textContent = '';
+        }
+    }).catch(function(erro) {
+        alert("Falha ao realizar o login");
+    });
 });
 
 let usuario = null;
