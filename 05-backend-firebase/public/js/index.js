@@ -3,18 +3,21 @@
 console.log('ok');
 const provider = new firebase.auth.GoogleAuthProvider();
 
-document.querySelector('div.naologado a')
-    .addEventListener('click', function() {
+const linkLogin = 
+    document.querySelector('div.naologado a');
+const avatar = document.querySelector('div.logado img');
+const nome = document.querySelector('div.logado span');
+
+linkLogin.addEventListener('click', function() {
     firebase.auth().signInWithRedirect(provider);
 });
 
 firebase.auth()
 .getRedirectResult().then(function(result) {
     if ( ! result.user) return;
-    const user = result.user;
-    document.querySelector('div.logado img')
-    .src = user.photoURL;
-    document.querySelector('div.logado span')
+    const user = result.user;    
+    avatar.src = user.photoURL;
+    
     .textContent = user.displayName;
     document.querySelector('div.logado')
     .style.display = 'block';
